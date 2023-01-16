@@ -28,10 +28,9 @@ namespace WebAPIHomework.Rep
             Stopwatch stopwatch = new Stopwatch();
 
             var response = new ItemResponse();
-            response.SortTimeInTicks = new List<SortTimeInTicks>();
 
             bool canBeStored = false;
-            canBeStored = request.Array.Min() < 0 && request.Array.Max() > 10;
+            canBeStored = request.Array.Min() < 1 || request.Array.Max() > 10;
             if (canBeStored)
             {
                 response.ItemResponseError = ItemResponseError.NumbersOutOfRange;
@@ -46,6 +45,7 @@ namespace WebAPIHomework.Rep
             };
 
             long[] sortedArray = new long[request.Array.Length];
+            response.SortTimeInTicks = new List<SortTimeInTicks>();
 
             foreach (var algorithm in list)
             {
